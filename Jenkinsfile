@@ -38,13 +38,27 @@ pipeline {
             }
           }
         }
+        stage('OCI Image BnP') {
+          steps {
+            container('kaniko') {
+              sh '''
+                /kaniko/executor \
+                  -f `pwd`/Dockerfile \
+                  -c `pwd` \
+                  --insecure \
+                  --skip-tls-verif/*  */y \
+                  --cache=true \
+                  --destination=docker.io/kvtest01/dso-demo
+            '''
+            }
+          }
+        }
       }
     }
-
     stage('Deploy to Dev') {
       steps {
         // TODO
-        sh "echo done"
+        sh 'echo done'
       }
     }
   }
