@@ -46,7 +46,7 @@ pipeline {
                   -f `pwd`/Dockerfile \
                   -c `pwd` \
                   --insecure \
-                  --skip-tls-verif/*  */y \
+                  --skip-tls-verify \
                   --cache=true \
                   --destination=docker.io/kvtest01/dso-demo
             '''
